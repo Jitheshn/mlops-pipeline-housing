@@ -1,0 +1,6 @@
+artifact_location: file:C:/BITS/Sem3/Assignment2/MLOps/mlops-pipeline-housing/mlruns/767658595499022743
+creation_time: 1754362450486
+experiment_id: '767658595499022743'
+last_update_time: 1754362450486
+lifecycle_stage: active
+name: CaliforniaHousingExperiment

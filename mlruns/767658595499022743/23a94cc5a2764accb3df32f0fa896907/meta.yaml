@@ -1,0 +1,14 @@
+artifact_uri: file:C:/BITS/Sem3/Assignment2/MLOps/mlops-pipeline-housing/mlruns/767658595499022743/23a94cc5a2764accb3df32f0fa896907/artifacts
+end_time: 1754363728813
+entry_point_name: ''
+experiment_id: '767658595499022743'
+lifecycle_stage: active
+run_id: 23a94cc5a2764accb3df32f0fa896907
+run_name: DecisionTreeRegressor
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1754363714894
+status: 3
+tags: []
+user_id: jitheshn

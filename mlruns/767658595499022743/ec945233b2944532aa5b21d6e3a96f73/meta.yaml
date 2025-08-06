@@ -1,0 +1,14 @@
+artifact_uri: file:C:/BITS/Sem3/Assignment2/MLOps/mlops-pipeline-housing/mlruns/767658595499022743/ec945233b2944532aa5b21d6e3a96f73/artifacts
+end_time: 1754364726269
+entry_point_name: ''
+experiment_id: '767658595499022743'
+lifecycle_stage: active
+run_id: ec945233b2944532aa5b21d6e3a96f73
+run_name: traveling-turtle-915
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1754364707880
+status: 3
+tags: []
+user_id: jitheshn

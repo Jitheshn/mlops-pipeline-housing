@@ -1,0 +1,22 @@
+artifact_path: file:C:/BITS/Sem3/Assignment2/MLOps/mlops-pipeline-housing/mlruns/767658595499022743/models/m-2aa4c2ea9d8141e1b8a71ce67a04a45a/artifacts
+flavors:
+  python_function:
+    env:
+      conda: conda.yaml
+      virtualenv: python_env.yaml
+    loader_module: mlflow.sklearn
+    model_path: model.pkl
+    predict_fn: predict
+    python_version: 3.13.5
+  sklearn:
+    code: null
+    pickled_model: model.pkl
+    serialization_format: cloudpickle
+    sklearn_version: 1.6.1
+mlflow_version: 3.1.4
+model_id: m-2aa4c2ea9d8141e1b8a71ce67a04a45a
+model_size_bytes: 5729
+model_uuid: m-2aa4c2ea9d8141e1b8a71ce67a04a45a
+prompts: null
+run_id: 8ddf11697f8640899be9e2a645a10f61
+utc_time_created: '2025-08-05 02:54:58.721554'

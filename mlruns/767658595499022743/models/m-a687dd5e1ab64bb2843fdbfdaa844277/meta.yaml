@@ -1,0 +1,10 @@
+artifact_location: file:C:/BITS/Sem3/Assignment2/MLOps/mlops-pipeline-housing/mlruns/767658595499022743/models/m-a687dd5e1ab64bb2843fdbfdaa844277/artifacts
+creation_timestamp: 1754364164658
+experiment_id: '767658595499022743'
+last_updated_timestamp: 1754364183114
+model_id: m-a687dd5e1ab64bb2843fdbfdaa844277
+model_type: null
+name: model
+source_run_id: 85a0d5735ca84f29ab9e1f0b7ce12020
+status: 2
+status_message: null

@@ -1,0 +1,14 @@
+artifact_uri: file:C:/BITS/Sem3/Assignment2/MLOps/mlops-pipeline-housing/mlruns/767658595499022743/07849c87247742bfbf713eced40b527b/artifacts
+end_time: 1754370810637
+entry_point_name: ''
+experiment_id: '767658595499022743'
+lifecycle_stage: active
+run_id: 07849c87247742bfbf713eced40b527b
+run_name: LinearRegression
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1754370791250
+status: 3
+tags: []
+user_id: jitheshn

@@ -1,0 +1,14 @@
+artifact_uri: file:C:/BITS/Sem3/Assignment2/MLOps/mlops-pipeline-housing/mlruns/767658595499022743/6456c624362c490c80e714b1e2f0bc2d/artifacts
+end_time: 1754364503943
+entry_point_name: ''
+experiment_id: '767658595499022743'
+lifecycle_stage: active
+run_id: 6456c624362c490c80e714b1e2f0bc2d
+run_name: abundant-snipe-721
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1754364487539
+status: 3
+tags: []
+user_id: jitheshn
