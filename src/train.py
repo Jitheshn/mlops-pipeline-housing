@@ -70,7 +70,6 @@ def main():
     mlflow.register_model(model_uri, "CalHousingBestModel")
 
     print(f"✅ Best model ({best_result['model_name']}) registered with R² = {best_result['r2']:.4f}")
-    
     # ✅ Save best model locally to models/best_model.pkl
     print("🔁 Downloading best model from MLflow...")
     model = mlflow.sklearn.load_model(model_uri)
