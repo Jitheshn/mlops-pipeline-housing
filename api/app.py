@@ -11,6 +11,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 MODEL_PATH = os.path.join(BASE_DIR, "models", "best_model.pkl")
 model = joblib.load(MODEL_PATH)
 
+
 class InputData(BaseModel):
     MedInc: float
     HouseAge: float
@@ -21,9 +22,11 @@ class InputData(BaseModel):
     Latitude: float
     Longitude: float
 
+
 @app.get("/")
 def read_root():
     return {"message": "Welcome to California Housing Prediction API"}
+
 
 @app.post("/predict")
 def predict(data: InputData):
