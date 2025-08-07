@@ -1,6 +1,6 @@
 # src/train.py
 
-import pandas as pd
+
 import numpy as np
 import mlflow
 import mlflow.sklearn
@@ -69,10 +69,8 @@ def main():
     model_uri = f"runs:/{best_result['run_id']}/model"
     mlflow.register_model(model_uri, "CalHousingBestModel")
 
-    print(
-        f"✅ Best model ({
-            best_result['model_name']}) registered with R² = {
-            best_result['r2']:.4f}")
+    print(f"✅ Best model ({best_result['model_name']}) registered with R² = {best_result['r2']:.4f}")
+
 
     # ✅ Save best model locally to models/best_model.pkl
     print("🔁 Downloading best model from MLflow...")
