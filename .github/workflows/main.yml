@@ -25,7 +25,7 @@ jobs:
 
     - name: Lint code with flake8
       run: |
-        run: flake8 api/app.py src/ --max-line-length=120
+        flake8 api/app.py src/ --max-line-length=120
 
     - name: Test Python script (optional)
       run: |
