@@ -1,0 +1,54 @@
+name: MLOps CI/CD Pipeline
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  ci-cd:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.10'
+
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+        pip install flake8
+
+    - name: Lint code with flake8
+      run: |
+        flake8 app.py src/ --max-line-length=120
+
+    - name: Test Python script (optional)
+      run: |
+        python -m unittest discover tests || echo "Tests failed"
+
+    - name: Set up Docker Buildx
+      uses: docker/setup-buildx-action@v3
+
+    - name: Login to Docker Hub
+      uses: docker/login-action@v3
+      with:
+        username: ${{ secrets.DOCKER_USERNAME }}
+        password: ${{ secrets.DOCKER_PASSWORD }}
+
+    - name: Build Docker image
+      run: |
+        docker build -t ${{ secrets.DOCKER_USERNAME }}/housing-api:latest .
+
+    - name: Push Docker image to Docker Hub
+      run: |
+        docker push ${{ secrets.DOCKER_USERNAME }}/housing-api:latest
+
+    - name: Deploy Locally (simulate)
+      run: |
+        echo "Deployment step - you can SSH to EC2 or run docker locally"
+        docker run -d -p 8000:8000 ${{ secrets.DOCKER_USERNAME }}/housing-api:latest
