@@ -1,6 +1,6 @@
 # src/train.py
 
-
+import pandas as pd
 import numpy as np
 import mlflow
 import mlflow.sklearn
@@ -10,7 +10,6 @@ from sklearn.linear_model import LinearRegression
 from sklearn.tree import DecisionTreeRegressor
 from sklearn.metrics import mean_squared_error, mean_absolute_error, r2_score
 from sklearn.model_selection import train_test_split
-
 
 def evaluate_model(y_true, y_pred):
     return {
