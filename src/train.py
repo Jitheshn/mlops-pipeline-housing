@@ -11,6 +11,7 @@ from sklearn.tree import DecisionTreeRegressor
 from sklearn.metrics import mean_squared_error, mean_absolute_error, r2_score
 from sklearn.model_selection import train_test_split
 
+
 def evaluate_model(y_true, y_pred):
     return {
         "rmse": np.sqrt(mean_squared_error(y_true, y_pred)),
@@ -69,8 +70,7 @@ def main():
     mlflow.register_model(model_uri, "CalHousingBestModel")
 
     print(f"✅ Best model ({best_result['model_name']}) registered with R² = {best_result['r2']:.4f}")
-
-
+    
     # ✅ Save best model locally to models/best_model.pkl
     print("🔁 Downloading best model from MLflow...")
     model = mlflow.sklearn.load_model(model_uri)

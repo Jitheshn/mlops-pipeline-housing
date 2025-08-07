@@ -1,5 +1,4 @@
 from sklearn.datasets import fetch_california_housing
-import pandas as pd
 
 
 def load_and_save_data():
