@@ -39,8 +39,11 @@ CREATE TABLE IF NOT EXISTS prediction_logs (
 """)
 conn.commit()
 
+
 # ====== Prometheus Metric ======
 prediction_counter = Counter("prediction_requests_total", "Total number of prediction requests")
+
+
 
 # ====== Request Schema ======
 class InputData(BaseModel):
@@ -53,10 +56,12 @@ class InputData(BaseModel):
     Latitude: float
     Longitude: float
 
+
 # ====== Routes ======
 @app.get("/")
 def read_root():
     return {"message": "Welcome to California Housing Prediction API"}
+
 
 @app.post("/predict")
 def predict(data: InputData):
@@ -77,6 +82,7 @@ def predict(data: InputData):
     conn.commit()
 
     return {"prediction": prediction_value}
+
 
 @app.get("/metrics")
 def metrics():
