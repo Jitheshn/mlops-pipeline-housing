@@ -1,6 +1,9 @@
 # Use official Python image
 FROM python:3.10-slim
 
+# Install sqlite3 (and clean up to keep image small)
+RUN apt-get update && apt-get install -y sqlite3 && rm -rf /var/lib/apt/lists/*
+
 # Set working directory
 WORKDIR /app
 
