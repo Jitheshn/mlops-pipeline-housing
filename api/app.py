@@ -44,7 +44,6 @@ conn.commit()
 prediction_counter = Counter("prediction_requests_total", "Total number of prediction requests")
 
 
-
 # ====== Request Schema ======
 class InputData(BaseModel):
     MedInc: float
