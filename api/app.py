@@ -89,6 +89,7 @@ def predict(data: InputData):
 def metrics():
     return Response(generate_latest(), media_type=CONTENT_TYPE_LATEST)
 
+
 @app.post("/retrain")
 def retrain_model():
     """
