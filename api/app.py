@@ -45,6 +45,7 @@ conn.commit()
 prediction_counter = Counter("prediction_requests_total", "Total number of prediction requests")
 prediction_latency = Histogram("prediction_latency_seconds", "Time taken for prediction requests")
 
+
 # ====== Input Schema with Validation ======
 class InputData(BaseModel):
     MedInc: float = Field(..., gt=0, description="Median income in block group (must be positive)")
@@ -55,11 +56,13 @@ class InputData(BaseModel):
     AveOccup: float = Field(..., gt=0, description="Average occupants per household")
     Latitude: float = Field(..., ge=32, le=42, description="Latitude in California range")
     Longitude: float = Field(..., ge=-125, le=-113, description="Longitude in California range")
+    
 
 # ====== Routes ======
 @app.get("/")
 def read_root():
     return {"message": "Welcome to California Housing Prediction API"}
+
 
 @app.post("/predict")
 @prediction_latency.time()
@@ -80,7 +83,9 @@ def predict(data: InputData):
     )
     conn.commit()
 
+
     return {"prediction": prediction_value}
+
 
 @app.get("/metrics")
 def metrics():
