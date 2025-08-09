@@ -56,7 +56,7 @@ class InputData(BaseModel):
     AveOccup: float = Field(..., gt=0, description="Average occupants per household")
     Latitude: float = Field(..., ge=32, le=42, description="Latitude in California range")
     Longitude: float = Field(..., ge=-125, le=-113, description="Longitude in California range")
-    
+
 
 # ====== Routes ======
 @app.get("/")
@@ -82,8 +82,6 @@ def predict(data: InputData):
         (datetime.now().isoformat(), str(data.dict()), prediction_value)
     )
     conn.commit()
-
-
     return {"prediction": prediction_value}
 
 
