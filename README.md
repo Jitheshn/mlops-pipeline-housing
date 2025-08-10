@@ -32,7 +32,7 @@ It features:
 
 ## 🏗 Architecture
 
-<img src="img/architecture.png" alt="Architecture Diagram" width="25%" height="25%">
+<img src="img/architecture.png" alt="Architecture Diagram" width="50%" height="50%">
 
 **Flow:**
 1. **Client** (Browser, curl, Postman) sends requests.
