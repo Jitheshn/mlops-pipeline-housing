@@ -1,7 +1,4 @@
-# MLOps (S2-24_AIMLCZG523) Assignment -1 
-# 🏠 Housing Price Prediction API (MLOps Pipeline)
-
-This project implements a complete MLOps pipeline for predicting California housing prices using machine learning. It includes model training, MLflow tracking and model registry, and a FastAPI-powered REST API for serving the best model. The solution is containerized using Docker for easy deployment.
+# MLOps (S2-24_AIMLCZG523) Assignment - 1 
 
 Group No: 7
  
@@ -9,185 +6,151 @@ Group Member Names:
 1. Mrs. VishnuPriya R | 2023ac05678@wilp.bits-pilani.ac.in 
 2. Mr. Ravichander R |  2023ac05152@wilp.bits-pilani.ac.in 
 3. Mr. Jithesh Nair |  2023ac05661@wilp.bits-pilani.ac.in 
-4. Mrs. Priyanka Bhambure | 2023ac05792@wilp.bits-pilani.ac.in  
+4. Mrs. Priyanka Bhambure | 2023ac05792@wilp.bits-pilani.ac.in 
+# 🏠 California Housing Price Prediction - MLOps API
 
+![Python](https://img.shields.io/badge/Python-3.9%2B-blue?logo=python)
+![FastAPI](https://img.shields.io/badge/FastAPI-0.95+-green?logo=fastapi)
+![Docker](https://img.shields.io/badge/Docker-Enabled-blue?logo=docker)
+![Prometheus](https://img.shields.io/badge/Prometheus-Metrics-orange?logo=prometheus)
+![Grafana](https://img.shields.io/badge/Grafana-Dashboard-orange?logo=grafana)
+![License](https://img.shields.io/badge/License-MIT-lightgrey)
+
+---
+
+## 📌 Overview
+This project implements an **MLOps pipeline** for predicting California housing prices using a trained machine learning model.  
+It features:
+- Model serving via **FastAPI**
+- On-demand **model retraining**
+- **Logging** to SQLite and log files
+- **Monitoring** with Prometheus & Grafana
+- **Containerized deployment** via Docker
+
+ 
+---
+
+## 🏗 Architecture
+
+<img src="img/architecture.png" alt="Architecture Diagram" width="25%" height="25%">
+
+**Flow:**
+1. **Client** (Browser, curl, Postman) sends requests.
+2. **FastAPI Service** handles:
+   - `/predict` → Model inference
+   - `/retrain` → Retrain model
+   - `/metrics` → Prometheus metrics
+3. **Pydantic Validation** ensures input schema correctness.
+4. Logs stored in **SQLite** & log files.
+5. Metrics exported to **Prometheus**.
+6. **Grafana Dashboard** visualizes metrics.
+7. **ML model** (`best_model.pkl`) serves predictions.
+
+---
+
+## 🚀 Features
+- **Endpoints**:
+  - `POST /predict`: Predict housing prices from features.
+  - `POST /retrain`: Retrain the ML model.
+  - `GET /metrics`: Prometheus-compatible metrics.
+- **Logging**:
+  - SQLite DB (`predictions.db`)
+  - Application `.log` file
+- **Monitoring**:
+  - Prometheus metrics collection
+  - Grafana dashboard visualization
+- **Deployment**:
+  - Docker container for portability
 
 ---
 
 ## 📂 Project Structure
-
 ```
-mlops-pipeline-housing/
-│
-├── data/
-│   └── raw/
-│       └── housing.csv           # Dataset (California housing)
-│
+.
+├── .dvc/                  
+├── .github/workflows/     # GitHub Actions CI/CD
+│   └── main.yml
+├── api/
+│   └── app.py              # FastAPI app
+├── data/                   
+├── mlruns/                 
+├── models/
+│   └── best_model.pkl      
 ├── src/
-│   └── train.py                  # ML model training and logging to MLflow
-│
-├── app.py                        # FastAPI app serving the best model
-├── Dockerfile                    # Docker container definition
-├── requirements.txt              # Required Python packages
-├── README.md                     # Project documentation
+│   ├── data_prep.py        
+│   └── train.py            
+├── tests/
+│   └── test_sample.py      
+├── predictions.db          
+├── prometheus.yml          
+├── Dockerfile              
+├── requirements.txt        
+└── README.md               
 ```
 
 ---
 
-## 🚀 Getting Started
+## ⚙️ Installation & Running
 
-### ✅ Prerequisites
-
-- Python 3.8+
-- pip
-- Docker (for containerization)
-- Git (optional)
-
----
-
-## ⚙️ Setup Instructions
-
-### 1. Clone the Repository
-
+### 1️⃣ Clone the repository
 ```bash
-git clone https://github.com/your-username/mlops-pipeline-housing.git
+git clone https://github.com/Jitheshn/mlops-pipeline-housing.git
 cd mlops-pipeline-housing
 ```
 
-### 2. Install Dependencies
-
+### 2️⃣ Install dependencies
 ```bash
 pip install -r requirements.txt
 ```
 
----
-
-## 🧠 Model Training
-
-To train the model and log experiments to MLflow:
-
+### 3️⃣ Run locally
 ```bash
-python src/train.py
+uvicorn api.app:app --reload --host 0.0.0.0 --port 8000
 ```
 
-- It trains a Linear Regression and a Decision Tree model.
-- Automatically selects the best model using R² score.
-- Registers the best model to the MLflow Model Registry as `CalHousingBestModel`.
+### 4️⃣ Build & Run with Docker
 
----
-
-## 🚀 Run the API Locally
-
-Start the FastAPI server using Uvicorn:
-
+#### Option 1 — Use the pre-trained model (no new dataset)
 ```bash
-uvicorn app:app --reload
+docker pull jitheshnairp/housing-api:latest
+docker run -d --name my_housing_api -p 8000:8000 jitheshnairp/housing-api:latest
 ```
 
-Once running, access the API docs at:  
-👉 [http://localhost:8000/docs](http://localhost:8000/docs)
-
----
-
-## 🔮 API Endpoint
-
-### `POST /predict`
-
-Predict median house value for a given input:
-
-#### ✅ Sample Request:
-
-```json
-POST /predict
-Content-Type: application/json
-
-{
-  "MedInc": 8.3252,
-  "HouseAge": 41.0,
-  "AveRooms": 6.9841,
-  "AveBedrms": 1.0238,
-  "Population": 322.0,
-  "AveOccup": 2.5556,
-  "Latitude": 37.88,
-  "Longitude": -122.23
-}
-```
-
-#### ✅ Sample Response:
-
-```json
-{
-  "prediction": 4.534
-}
-```
-
----
-
-## 🐳 Docker Usage
-
-### Build Docker Image
-
+#### Option 2 — Use new dataset (You may wan to invoke /retrain end point)
 ```bash
-docker build -t housing-api .
+docker pull jitheshnairp/housing-api:latest
+docker run -d -v <path to housing.csv>:/app/data/raw/housing.csv --name my_housing_api -p 8000:8000 jitheshnairp/housing-api:latest
 ```
 
-### Run Docker Container
+---
 
-```bash
-docker run -p 8000:8000 housing-api
+## 📊 Monitoring with Prometheus & Grafana
+
+- **Prometheus Scrape Endpoint**:
+```
+http://localhost:8000/metrics
+```
+- **Prometheus UI**:
+```
+http://localhost:9090
+```
+- **Grafana UI**:
+```
+http://localhost:3000
 ```
 
-Then open [http://localhost:8000/docs](http://localhost:8000/docs)
+---
+
+## 🛠 Tech Stack
+- **Language**: Python 3.9+
+- **Framework**: FastAPI
+- **Model**: Scikit-learn
+- **Data Versioning**: DVC
+- **Monitoring**: Prometheus + Grafana
+- **Containerization**: Docker
+- **Validation**: Pydantic
 
 ---
 
-## 🧪 Testing
-
-You can test the `/predict` endpoint using:
-
-- Swagger UI: [http://localhost:8000/docs](http://localhost:8000/docs)
-- Postman
-- `curl` or any HTTP client
-
----
-
-## 📈 MLflow Integration
-
-The project uses MLflow to:
-
-- Track experiments and metrics
-- Log and register models
-- Load the best model for prediction
-
-You can launch the MLflow UI using:
-
-```bash
-mlflow ui
-```
-
-Then visit: [http://localhost:5000](http://localhost:5000)
-
----
-
-## ✨ Enhancements (Future Scope)
-
-- CI/CD with GitHub Actions
-- Model monitoring
-- Unit tests with pytest
-- Add support for hyperparameter tuning
-- Deploy to cloud (Azure/AWS/GCP)
-
----
-
-## 📄 License
-
+## 📜 License
 This project is licensed under the MIT License.
-
----
-
-## 🙌 Acknowledgments
-
-- [scikit-learn](https://scikit-learn.org/)
-- [FastAPI](https://fastapi.tiangolo.com/)
-- [MLflow](https://mlflow.org/)
-- [California Housing Dataset](https://www.dcc.fc.up.pt/~ltorgo/Regression/cal_housing.html)
