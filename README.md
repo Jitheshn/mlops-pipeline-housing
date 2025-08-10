@@ -1,6 +1,16 @@
+# MLOps (S2-24_AIMLCZG523) Assignment -1 
 # 🏠 Housing Price Prediction API (MLOps Pipeline)
 
 This project implements a complete MLOps pipeline for predicting California housing prices using machine learning. It includes model training, MLflow tracking and model registry, and a FastAPI-powered REST API for serving the best model. The solution is containerized using Docker for easy deployment.
+
+Group No: 7
+ 
+Group Member Names:
+1. Mrs. VishnuPriya R | 2023ac05678@wilp.bits-pilani.ac.in 
+2. Mr. Ravichander R |  2023ac05152@wilp.bits-pilani.ac.in 
+3. Mr. Jithesh Nair |  2023ac05661@wilp.bits-pilani.ac.in 
+4. Mrs. Priyanka Bhambure | 2023ac05792@wilp.bits-pilani.ac.in  
+
 
 ---
 
